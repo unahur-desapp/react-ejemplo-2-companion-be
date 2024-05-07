@@ -13,9 +13,9 @@ router.get('/', function (req, res, next) {
     res.json(ALL_PHRASES);
 });
 
-router.delete('/:phrase', function (req, res, next) {
+router.delete('/', function (req, res, next) {
     let actuallyDeleted = false;
-    const phraseToDelete = req.params.phrase;
+    const phraseToDelete = req.body.text;
     const phraseIndex = ALL_PHRASES.indexOf(phraseToDelete);
     if (phraseIndex > -1) {
         ALL_PHRASES.splice(phraseIndex, 1);
@@ -24,9 +24,9 @@ router.delete('/:phrase', function (req, res, next) {
     res.json({ deletedPhrase: actuallyDeleted ? phraseToDelete : null });
 });
 
-router.post('/:phrase', function (req, res, next) {
+router.post('/', function (req, res, next) {
     let actuallyAdded = false;
-    const phraseToAdd = req.params.phrase;
+    const phraseToAdd = req.body.text;
     const phraseIndex = ALL_PHRASES.indexOf(phraseToAdd);
     if (phraseIndex === -1) {
         ALL_PHRASES.unshift(phraseToAdd);
